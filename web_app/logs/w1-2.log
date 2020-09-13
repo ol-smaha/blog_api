@@ -1,0 +1,3 @@
+[2020-09-13 14:09:00,339: INFO/ForkPoolWorker-3] Task blog.tasks.reset_votes[f7ba1959-a460-45cc-b4de-2698c5bb6a74] succeeded in 0.13126623400057724s: None
+[2020-09-13 14:10:00,139: INFO/ForkPoolWorker-3] Task blog.tasks.reset_votes[81608889-a024-4c15-8409-3644c0e6c797] succeeded in 0.06416074499975366s: None
+[2020-09-13 14:11:00,083: INFO/ForkPoolWorker-3] Task blog.tasks.reset_votes[408ee438-b0c5-4feb-bf98-884a032b885e] succeeded in 0.02818920500067179s: None

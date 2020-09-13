@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+
+  redis_q:
+    image: "redis:alpine"
+    ports:
+      - 6379:6379
+    restart: always
+
+  db:
+    container_name: blog_db
+    image: postgres
+    restart: always
+    env_file: ./web.env
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    container_name: blog_web
+    build: ./web_app
+    restart: always
+    env_file: ./web.env
+    command: /code/run_web.sh
+    volumes:
+      - ./web_app:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - redis_q
+
+
+  nginx:
+    container_name: blog_nginx
+    build: ./nginx
+    restart: always
+    volumes:
+      - ./web_app/static_root:/code/static_root
+      - ./web_app/media:/code/media
+      - ./nginx/logs:/var/log/nginx
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
